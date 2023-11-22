@@ -1,5 +1,7 @@
 package com.ephemzy;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
 
@@ -9,13 +11,49 @@ import java.util.Objects;
  * application programming interface specification that describes the management
  * of relational data in enterprise Java applications.
  * <p>
+ * Docker:
+ * docker compose ps
+ * <p>
+ * Also:
+ * docker logs postgress -f
+ * <p>
  * to create bd with postgres:
  * -> docker ps
- * -> docker exec -it postgress bash // this allows us to execute shell command within the container
- *  ->
- * ->
+ * -> docker exec -it postgress bash  :- this allows us to execute shell command within the container
+ * <p>
+ * -> psql -U amigoscode  :-psql is for progress sql, -U is for User, and the amigoscode the username from the docker yml file.
+ * <p>
+ * -> \l   :-to list the databases
+ * <p>
+ * -> CREATE DATABASE customer;  :- a sql code to create database in the bash
+ * <p>
+ * -> \l    :- to see the database list again
+ * <p>
+ * -> ctrl D   :- to come out of the shell to come out of psql
+ * <p>
+ * -> ctrl D    :- to come out of the container shell again.
+ * <p>
+ * -> \c customer     :- to connect to customer db
+ * <p>
+ * -> \dt    :- to show list of relations
+ * <p>
+ * -> \d      :- to show list of relations
+ * <p>
  * */
+@Entity
+
 public class Customer {
+
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private Integer id;
     private String name;
     private String email;
