@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping("api/v1/customers")
 public class Main {
 
+    // api address: http://localhost:8080/api/v1/customers
+
     private final CustomerRepository customerRepository;
 
     public Main(CustomerRepository customerRepository) {
